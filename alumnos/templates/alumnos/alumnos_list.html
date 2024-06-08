@@ -32,6 +32,7 @@
             <th scope="col">RUN</th>
             <th scope="col">Nombre</th>
             <th scope="col">Telefono</th>
+            <th scope="col">Direccion</th>
             <th scope="col">Borrar</th>
             <th scope="col">Modificar</th>
           </tr>
@@ -43,8 +44,11 @@
                 <td>{{alumno.rut}}</td>
                 <td>{{alumno.nombre}} {{alumno.apellido_paterno}} {{alumno.apellido_materno}}</td>
                 <td>{{alumno.telefono}}</td>
-                <td><a href="{% url 'alumnos_del' pk=alumno.rut %}">Eliminar</a></td>
-                <td><a href="{% url 'alumnos_findEdit' pk=alumno.rut %}">Modificar</a></td>
+                <td>{{alumno.direccion}}</td>
+                <td><a href="{% url 'alumnos_del' pk=alumno.rut %}"><button class="btn btn-danger"
+                  > Eliminar</button></a></td>
+                <td><a href="{% url 'alumnos_findEdit' pk=alumno.rut %}"><button class="btn btn-success"
+                  >Modificar</button></a></td>
               </tr>
             
             {% endfor %}
