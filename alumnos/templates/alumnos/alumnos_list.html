@@ -12,12 +12,12 @@
 </head>
 <body>
     <h1>Bienvenidos Alumnos<br>https://github.com/diegoroblesrivera/django3</h1>
-
+{% if mensaje %}
     <div class="alert alert-primary" role="alert" id="idMensaje">
-      {% if mensaje %}
+      
       {{mensaje}}
-      {%endif%}
-    </div>
+      
+    </div>{%endif%}
     <div class="container">
         <div class="row">
        <a href="{% url 'alumnosAdd'%}">
@@ -33,6 +33,7 @@
             <th scope="col">Nombre</th>
             <th scope="col">Telefono</th>
             <th scope="col">Borrar</th>
+            <th scope="col">Modificar</th>
           </tr>
         </thead>
         <tbody>
@@ -42,8 +43,8 @@
                 <td>{{alumno.rut}}</td>
                 <td>{{alumno.nombre}} {{alumno.apellido_paterno}} {{alumno.apellido_materno}}</td>
                 <td>{{alumno.telefono}}</td>
-                  <td><a href="{% url 'alumnos_del' pk=alumno.rut %}">Eliminar</a></td>
-               {% comment %} <td><a href="{% url 'alumnos_findEdit' pk=alumno.rut %}">Modificar</a></td>  {% endcomment %}
+                <td><a href="{% url 'alumnos_del' pk=alumno.rut %}">Eliminar</a></td>
+                <td><a href="{% url 'alumnos_findEdit' pk=alumno.rut %}">Modificar</a></td>
               </tr>
             
             {% endfor %}
