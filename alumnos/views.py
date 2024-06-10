@@ -67,3 +67,53 @@ def alumnos_del(request, pk):
      alumnos=Alumno.objects.all()
      context={"alumnos":alumnos, "mensaje": mensaje}
      return render(request, 'alumnos/alumnos_list.html', context)
+ 
+def alumnos_findEdit(request, pk):
+    
+    if pk!="":
+       alumno=Alumno.objects.get(rut=pk)
+       generos = Genero.objects.all()
+       id_genero_s = alumno.id_genero.id_genero  
+       
+       context={"alumno":alumno, "generos": generos, "id_genero_s": id_genero_s}
+    if alumno:
+        return render(request, 'alumnos/alumnos_edit.html', context)
+    else:
+        context={"mensaje": "Error, no existe el rut..."}
+        return render(request, 'alumnos/alumnos_edit.html', context)
+    
+def alumnoUpdate(request):
+    if request.method=="POST":
+        
+        rut = request.POST["rut"]
+        nombre = request.POST["nombre"]
+        apaterno = request.POST["apaterno"]
+        amaterno = request.POST["amaterno"]
+        fechaNac = request.POST["fechaNac"]
+        genero = request.POST["genero"]
+        telefono = request.POST["telefono"]
+        email = request.POST["email"]
+        direccion = request.POST["direccion"]
+        activo = "1"
+
+        objGenero = Genero.objects.get(id_genero=genero)
+        alumno = Alumno()
+        alumno.rut=rut,
+        alumno.nombre=nombre,
+        alumno.apellido_paterno=apaterno,
+        alumno.apellido_materno=amaterno,
+        alumno.fecha_nacimiento=fechaNac,
+        alumno.id_genero=objGenero,  # Asociar el genero correctamente
+        alumno.telefono=telefono,
+        alumno.email=email,
+        alumno.direccion=direccion,
+        alumno.activo=activo
+        
+        alumno.save()
+        generos = Genero.objects.all()
+        context={'mensaje': "Datos actualizados comn exito", "alumno":alumno, "generos": generos}
+        return render(request, 'alumnos/alumnos_edit.html', context)
+    else:
+        alumnos=Alumno.objects.all()
+        context={"alumnos":alumnos}
+        return render(request, 'alumnos/alumnos_list.html', context)

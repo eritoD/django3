@@ -12,11 +12,11 @@
 </head>
 <body>
     <h1>Agregar Alumnos</h1>
+    {% if mensaje %}
     <div class="alert alert-primary" role="alert" id="idMensaje">
-      {% if mensaje %}
       {{mensaje}}
-      {%endif%}
     </div>
+    {%endif%}
     <div class="container">
         <div class="row">
          
