@@ -14,7 +14,13 @@
     <h1>Agregar Alumnos</h1>
     {% if mensaje %}
     <div class="alert alert-primary" role="alert" id="idMensaje">
+<<<<<<< HEAD
       {{mensaje}}
+=======
+      
+      {{mensaje}}
+      
+>>>>>>> fb9c2183b61437ec9542bed79101a3189b457394
     </div>
     {%endif%}
     <div class="container">
@@ -34,8 +40,8 @@
                 <option value="{{genero.id_genero}}">{{genero.genero}}</option>
                 {% endfor %}
             </select></pre>
-            <pre>Celular: <input type="text" name="telefono"></pre>
-            <pre>Email : <input type="text" name="email"></pre>
+            <pre>Celular: <input type="number" name="telefono" minlength="9"></pre>
+            <pre>Email : <input type="email" name="email"></pre>
             <pre>Direccion: <input type="text" name="direccion"></pre>
 
             <input type="submit" value="Agregar">

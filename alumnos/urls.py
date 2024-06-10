@@ -8,5 +8,10 @@ urlpatterns = [
     path('alumnosAdd', views.alumnosAdd, name='alumnosAdd'),
     path('alumnos_del/<str:pk>', views.alumnos_del, name='alumnos_del'),
     path('alumnos_findEdit/<str:pk>', views.alumnos_findEdit, name='alumnos_findEdit'),
+<<<<<<< HEAD
     path('alumnoUpdate', views.alumnoUpdate, name='alumnoUpdate'),
+=======
+    path('alumnosUpdate', views.alumnosUpdate, name='alumnosUpdate'),
+
+>>>>>>> fb9c2183b61437ec9542bed79101a3189b457394
 ]

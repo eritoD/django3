@@ -67,6 +67,7 @@ def alumnos_del(request, pk):
      alumnos=Alumno.objects.all()
      context={"alumnos":alumnos, "mensaje": mensaje}
      return render(request, 'alumnos/alumnos_list.html', context)
+<<<<<<< HEAD
  
 def alumnos_findEdit(request, pk):
     
@@ -85,6 +86,24 @@ def alumnos_findEdit(request, pk):
 def alumnoUpdate(request):
     if request.method=="POST":
         
+=======
+    
+def alumnos_findEdit (request, pk):
+   if pk!="":
+      alumno=Alumno.objects.get(rut=pk)
+      generos = Genero.objects.all()
+      print(type(alumno.id_genero.genero))
+
+      context={'alumno':alumno, 'generos': generos}
+   if alumno:
+      return render(request, 'alumnos/alumnos_edit.html', context)
+   else:
+      context={'mensaje':"error, rut no existe"}
+      return render(request, 'alumnos/alumnos_edit.html', context)
+
+def alumnosUpdate(request):
+    if request.method == "POST":
+>>>>>>> fb9c2183b61437ec9542bed79101a3189b457394
         rut = request.POST["rut"]
         nombre = request.POST["nombre"]
         apaterno = request.POST["apaterno"]
@@ -98,6 +117,7 @@ def alumnoUpdate(request):
 
         objGenero = Genero.objects.get(id_genero=genero)
         alumno = Alumno()
+<<<<<<< HEAD
         alumno.rut=rut,
         alumno.nombre=nombre,
         alumno.apellido_paterno=apaterno,
@@ -117,3 +137,28 @@ def alumnoUpdate(request):
         alumnos=Alumno.objects.all()
         context={"alumnos":alumnos}
         return render(request, 'alumnos/alumnos_list.html', context)
+=======
+        alumno.rut = rut
+        alumno.nombre = nombre
+        alumno.apellido_paterno = apaterno
+        alumno.apellido_materno = amaterno
+        alumno.fecha_nacimiento = fechaNac
+        alumno.id_genero = objGenero  # Asociar el genero correctamente
+        alumno.telefono = telefono
+        alumno.email = email
+        alumno.direccion = direccion
+        alumno.activo = activo
+        alumno.save()
+
+        generos = Genero.objects.all()
+        context = {
+            'mensaje': "Datos actualizados",
+            'generos': generos,
+            'alumno': alumno
+        }
+        return render(request, 'alumnos/alumnos_edit.html', context)
+    else:
+        alumnos = Alumno.objects.all()
+        context = {'alumnos': alumnos}
+        return render(request, 'alumnos/alumnos_list.html', context)
+>>>>>>> fb9c2183b61437ec9542bed79101a3189b457394

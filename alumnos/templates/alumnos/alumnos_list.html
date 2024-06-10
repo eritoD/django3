@@ -12,11 +12,20 @@
 </head>
 <body>
     <h1>Bienvenidos Alumnos<br>https://github.com/diegoroblesrivera/django3</h1>
+<<<<<<< HEAD
   {% if mensaje %}
     <div class="alert alert-primary" role="alert" id="idMensaje">
       {{mensaje}}
     </div>
     {%endif%}
+=======
+{% if mensaje %}
+    <div class="alert alert-primary" role="alert" id="idMensaje">
+      
+      {{mensaje}}
+      
+    </div>{%endif%}
+>>>>>>> fb9c2183b61437ec9542bed79101a3189b457394
     <div class="container">
         <div class="row">
        <a href="{% url 'alumnosAdd'%}">
@@ -31,6 +40,7 @@
             <th scope="col">RUN</th>
             <th scope="col">Nombre</th>
             <th scope="col">Telefono</th>
+            <th scope="col">Direccion</th>
             <th scope="col">Borrar</th>
             <th scope="col">Modificar</th>
           </tr>
@@ -42,8 +52,16 @@
                 <td>{{alumno.rut}}</td>
                 <td>{{alumno.nombre}} {{alumno.apellido_paterno}} {{alumno.apellido_materno}}</td>
                 <td>{{alumno.telefono}}</td>
+<<<<<<< HEAD
                 <td><a href="{% url 'alumnos_del' pk=alumno.rut %}">Eliminar</a></td>
                 <td><a href="{% url 'alumnos_findEdit' pk=alumno.rut %}">Modificar</a></td>
+=======
+                <td>{{alumno.direccion}}</td>
+                <td><a href="{% url 'alumnos_del' pk=alumno.rut %}"><button class="btn btn-danger"
+                  > Eliminar</button></a></td>
+                <td><a href="{% url 'alumnos_findEdit' pk=alumno.rut %}"><button class="btn btn-success"
+                  >Modificar</button></a></td>
+>>>>>>> fb9c2183b61437ec9542bed79101a3189b457394
               </tr>
             
             {% endfor %}
