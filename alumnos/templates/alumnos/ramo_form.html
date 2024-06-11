@@ -9,7 +9,7 @@
     <h1>Ramo Form</h1>
     <form action="{% url 'ramo_form' %}" method="POST">
         {% csrf_token %}
-        {{ form.as_ul }}
+        {{ form.as_p }}
         <button type="submit">Guardar</button>
     </form>
 </body>
