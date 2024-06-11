@@ -11,48 +11,19 @@
     <script src="{% static 'js/main.js' %}" ></script> {% endcomment %}
 </head>
 <body>
-<<<<<<< HEAD
-  {%if alumno%}
-    <h1>Agregar Alumnos</h1>
-    {% if mensaje %}
-    <div class="alert alert-primary" role="alert" id="idMensaje">
-      {{mensaje}}
-=======
     <h1>Agregar Alumnos</h1>
     {% if mensaje %}
     <div class="alert alert-primary" role="alert" id="idMensaje">
       
       {{mensaje}}
       
->>>>>>> fb9c2183b61437ec9542bed79101a3189b457394
     </div>
     {%endif%}
     <div class="container">
         <div class="row">
          
-<<<<<<< HEAD
-
-          <form action="{% url 'alumnoUpdate'%}" method="post">
-            {% csrf_token%} 
-
-            <pre>Rut <input type="text" name="rut" value="{{alumno.rut}}"></pre>
-            <pre>Nombre <input type="text" name="nombre" value="{{alumno.nombre}}"></pre>
-            <pre>Apellido Paterno <input type="text" name="apaterno" value="{{alumno.apellido_paterno}}"></pre>
-            <pre>Apellido Materno <input type="text" name="amaterno" value="{{alumno.apellido_materno}}"></pre>
-            <pre>Fecha Nacimiento <input type="date" name="fechaNac" value="{{alumno.fecha_nacimiento|date:'Y-m-d'}}"></pre>
-            <pre>Genero {{alumno.id_genero.genero}}<select name="genero" id="genero" >
-
-            </select></pre>
-            <pre>Celular: <input type="text" name="telefono" value="{{alumno.telefono}}"></pre>
-            <pre>Email : <input type="text" name="email" value="{{alumno.email}}"></pre>
-            <pre>Direccion: <input type="text" name="direccion" value="{{alumno.direccion}}"></pre>
-
-            <input type="submit" value="Agregar">
-
-          </form>
-=======
           {% if alumno %}
-          <form action="{% url "alumnosUpdate" %}" method="post">
+          <form action="{% url "alumnoUpdate" %}" method="post">
             {% csrf_token%} 
 
             <pre>Rut <input type="text" name="rut" value="{{alumno.rut}}"></pre>
@@ -78,23 +49,18 @@
 
           </form>
           {% endif %}
->>>>>>> fb9c2183b61437ec9542bed79101a3189b457394
           <a href="{%url 'crud'%}">Volver</a>
 
  
         </div>
     </div>
 
-    {% endif %}
 
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-<<<<<<< HEAD
-=======
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
->>>>>>> fb9c2183b61437ec9542bed79101a3189b457394
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" 
+    integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script>
     $(document).ready(function(){
       $("#idMensaje").delay(2000).fadeOut("slow");
