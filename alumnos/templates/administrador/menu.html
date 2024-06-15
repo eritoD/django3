@@ -30,10 +30,10 @@
             </li>
             <li class="nav-item dropdown">
 
-            {% comment %} {% if user.is_authenticated %} {% endcomment %}
-            {% if usuario != None %}
+            {% if user.is_authenticated %}
+            {% comment %} {% if usuario != None %} {% endcomment %}
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    {{usuario}}
+                    {{user.username}}
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="{% url 'logout'%}">Cerrar Sesion</a>
