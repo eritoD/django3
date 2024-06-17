@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Alumno, Genero
+from .forms import RamoForm, SeccionForm
 
 # Create your views here.
 def index(request):
@@ -16,7 +17,6 @@ def crud(request):
     alumnos=Alumno.objects.all()
     context={"alumnos":alumnos}
     return render(request, 'alumnos/alumnos_list.html', context)
-
 
 def alumnosAdd(request):
     if request.method != "POST":
@@ -67,7 +67,6 @@ def alumnos_del(request, pk):
      alumnos=Alumno.objects.all()
      context={"alumnos":alumnos, "mensaje": mensaje}
      return render(request, 'alumnos/alumnos_list.html', context)
-<<<<<<< HEAD
  
 def alumnos_findEdit(request, pk):
     
@@ -75,6 +74,7 @@ def alumnos_findEdit(request, pk):
        alumno=Alumno.objects.get(rut=pk)
        generos = Genero.objects.all()
        id_genero_s = alumno.id_genero.id_genero  
+       
        
        context={"alumno":alumno, "generos": generos, "id_genero_s": id_genero_s}
     if alumno:
@@ -86,24 +86,6 @@ def alumnos_findEdit(request, pk):
 def alumnoUpdate(request):
     if request.method=="POST":
         
-=======
-    
-def alumnos_findEdit (request, pk):
-   if pk!="":
-      alumno=Alumno.objects.get(rut=pk)
-      generos = Genero.objects.all()
-      print(type(alumno.id_genero.genero))
-
-      context={'alumno':alumno, 'generos': generos}
-   if alumno:
-      return render(request, 'alumnos/alumnos_edit.html', context)
-   else:
-      context={'mensaje':"error, rut no existe"}
-      return render(request, 'alumnos/alumnos_edit.html', context)
-
-def alumnosUpdate(request):
-    if request.method == "POST":
->>>>>>> fb9c2183b61437ec9542bed79101a3189b457394
         rut = request.POST["rut"]
         nombre = request.POST["nombre"]
         apaterno = request.POST["apaterno"]
@@ -117,7 +99,6 @@ def alumnosUpdate(request):
 
         objGenero = Genero.objects.get(id_genero=genero)
         alumno = Alumno()
-<<<<<<< HEAD
         alumno.rut=rut,
         alumno.nombre=nombre,
         alumno.apellido_paterno=apaterno,
@@ -137,28 +118,31 @@ def alumnosUpdate(request):
         alumnos=Alumno.objects.all()
         context={"alumnos":alumnos}
         return render(request, 'alumnos/alumnos_list.html', context)
-=======
-        alumno.rut = rut
-        alumno.nombre = nombre
-        alumno.apellido_paterno = apaterno
-        alumno.apellido_materno = amaterno
-        alumno.fecha_nacimiento = fechaNac
-        alumno.id_genero = objGenero  # Asociar el genero correctamente
-        alumno.telefono = telefono
-        alumno.email = email
-        alumno.direccion = direccion
-        alumno.activo = activo
-        alumno.save()
-
-        generos = Genero.objects.all()
-        context = {
-            'mensaje': "Datos actualizados",
-            'generos': generos,
-            'alumno': alumno
-        }
-        return render(request, 'alumnos/alumnos_edit.html', context)
+    
+def ramo_form(request):
+    if request.method == 'POST':
+        form = RamoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('ramo_form')  
+        else:
+            print(form.errors)  
     else:
-        alumnos = Alumno.objects.all()
-        context = {'alumnos': alumnos}
-        return render(request, 'alumnos/alumnos_list.html', context)
->>>>>>> fb9c2183b61437ec9542bed79101a3189b457394
+        form = RamoForm()
+    context={'form': form}
+
+    return render(request, 'alumnos/ramo_form.html', context)
+
+def seccion_form(request):
+    if request.method == 'POST':
+        form = SeccionForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('seccion_form')  
+        else:
+            print(form.errors)  
+    else:
+        form = SeccionForm()
+    context={'form': form}
+
+    return render(request, 'alumnos/seccion_form.html', context)
