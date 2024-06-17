@@ -1,6 +1,11 @@
 from django.shortcuts import render, redirect
 from .models import Alumno, Genero
+<<<<<<< HEAD
 from .forms import RamoForm, SeccionForm
+=======
+from .forms import RamoForm, SeccionForm, AlumnoForm
+from django.contrib.auth.decorators import login_required
+>>>>>>> 06d97f7353f4fdf9628514e91ac8320370b2e853
 
 # Create your views here.
 def index(request):
@@ -15,7 +20,8 @@ def listadoSQL(request):
 
 def crud(request):
     alumnos=Alumno.objects.all()
-    context={"alumnos":alumnos}
+    usuario=request.session["usuario"]
+    context={"alumnos":alumnos, 'usuario':usuario}
     return render(request, 'alumnos/alumnos_list.html', context)
 
 def alumnosAdd(request):
@@ -124,12 +130,13 @@ def ramo_form(request):
         form = RamoForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('ramo_form')  
+            context={'titulo': "Formulario Ramo"}
+            return render(request, 'alumnos/ramo_form.html', context)  
         else:
             print(form.errors)  
     else:
         form = RamoForm()
-    context={'form': form}
+    context={'form': form,'titulo': "Formulario Ramo"}
 
     return render(request, 'alumnos/ramo_form.html', context)
 
@@ -138,11 +145,34 @@ def seccion_form(request):
         form = SeccionForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('seccion_form')  
+            context={'titulo': "Formulario Seccion"}
+            return render(request, 'alumnos/ramo_form.html', context)  
+         
         else:
             print(form.errors)  
     else:
         form = SeccionForm()
+    context={'form': form,'titulo': "Formulario Seccion"}
+
+    return render(request, 'alumnos/ramo_form.html', context)
+
+def alumno_form(request):
+    if request.method == 'POST':
+        form = AlumnoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('alumno_form')  
+        else:
+            print(form.errors)  
+    else:
+        form = AlumnoForm()
     context={'form': form}
 
-    return render(request, 'alumnos/seccion_form.html', context)
+    return render(request, 'alumnos/alumno_form.html', context)
+
+# @login_required
+def menu(request):
+    request.session["usuario"]="Drobles"
+    usuario=request.session["usuario"]
+    context={'usuario':usuario}
+    return render(request, 'administrador/menu.html', context)

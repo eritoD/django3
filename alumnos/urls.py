@@ -12,5 +12,7 @@ urlpatterns = [
     
     path('ramo_form', views.ramo_form, name='ramo_form'),
     path('seccion_form', views.seccion_form, name='seccion_form'),
+    path('alumno_form', views.alumno_form, name='alumno_form'),
+    path('menu', views.menu, name='menu'),
 
 ]

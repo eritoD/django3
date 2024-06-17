@@ -11,7 +11,9 @@
     <script src="{% static 'js/main.js' %}" ></script>
 </head>
 <body>
-    <h1>Bienvenidos Alumnos<br>https://github.com/diegoroblesrivera/django3</h1>
+    <h1>Bienvenidos   {% if usuario != None %}
+{{usuario}} {% else %} Alumno {% endif %}
+        <br>https://github.com/diegoroblesrivera/django3</h1>
 {% if mensaje %}
     <div class="alert alert-primary" role="alert" id="idMensaje">
       
