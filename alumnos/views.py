@@ -1,11 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Alumno, Genero
-<<<<<<< HEAD
-from .forms import RamoForm, SeccionForm
-=======
 from .forms import RamoForm, SeccionForm, AlumnoForm
 from django.contrib.auth.decorators import login_required
->>>>>>> 06d97f7353f4fdf9628514e91ac8320370b2e853
 
 # Create your views here.
 def index(request):
